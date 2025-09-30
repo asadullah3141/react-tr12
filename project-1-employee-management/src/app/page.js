@@ -1,15 +1,25 @@
 'use client'
+
 import { useState } from 'react'
 import EmployeeTable from '@/components/EmployeeTable'
 import EmployeeForm from '@/components/EmployeeForm'
 
 export default function Home() {
+
   const [formVisibility, setFormVisibility] = useState(false)
+
   const [employees, setEmployees] = useState([
     { id: 1, name: "Asad Asad", email: "asad@example.com", department: "IT", role: "Developer" },
     { id: 2, name: "Ahmed Ahmed", email: "ahmed@example.com", department: "HR", role: "Manager" }
   ])
-  const [formData, setFormData] = useState({ name: "", email: "", department: "", role: "", id: "" })
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    department: "",
+    role: "",
+    id: ""
+  })
   const [errors, setErrors] = useState({})
 
   function handleAddEmployee() {
@@ -36,12 +46,25 @@ export default function Home() {
     if (!validate()) return
 
     if (formData.id) {
-      setEmployees(employees.map(emp => emp.id === formData.id ? { ...formData } : emp))
+      setEmployees(employees.map(employee => employee.id === formData.id ? { ...formData } : employee))
     } else {
-      setEmployees([...employees, { ...formData, id: Date.now() }])
+      setEmployees([
+        ...employees,
+        { 
+          ...formData,
+          id: Date.now() 
+        }
+      ])
     }
 
-    setFormData({ name: "", email: "", department: "", role: "", id: "" })
+    setFormData({
+      name: "",
+      email: "",
+      department: "",
+      role: "",
+      id: ""
+    })
+
     setErrors({})
     setFormVisibility(false)
   }
@@ -64,7 +87,7 @@ export default function Home() {
         <div>
           <div className='flex justify-between items-center'>
             <h1 className='text-gray-700 font-semibold py-2 inline'>Employee Management System</h1>
-            <button onClick={handleAddEmployee} className='cursor-pointer uppercase text-[11px] font-bold text-center text-white bg-green-600 px-2 h-6 rounded-sm'>Add Employee</button>
+            <button onClick={handleAddEmployee} className='cursor-pointer uppercase text-[11px] font-bold text-center text-white bg-green-400 px-2 h-6 rounded-sm'>Add Employee</button>
           </div>
           <EmployeeTable employees={employees} onDelete={handleDeleteEmployee} onEdit={handleEditEmployee} />
         </div>

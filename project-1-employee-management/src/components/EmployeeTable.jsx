@@ -23,7 +23,7 @@ export default function EmployeeTable({ employees, onDelete, onEdit }) {
                 <button onClick={() => onDelete(employee.id)} className='cursor-pointer uppercase text-[11px] font-bold text-center text-white bg-red-400 px-2 py-[2px] rounded-sm'>Delete</button>
               </td>
               <td className='px-2 py-2 text-center'>
-                <button onClick={() => onEdit(employee.id)} className='cursor-pointer uppercase text-[11px] font-bold text-center text-white bg-gray-500 px-2 py-[2px] rounded-sm'>Edit</button>
+                <button onClick={() => onEdit(employee.id)} className='cursor-pointer uppercase text-[11px] font-bold text-center text-white bg-gray-400 px-2 py-[2px] rounded-sm'>Edit</button>
               </td>
             </tr>
           ))}
